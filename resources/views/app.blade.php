@@ -36,8 +36,6 @@
     @include('components.footer')
 
 
-
-
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
