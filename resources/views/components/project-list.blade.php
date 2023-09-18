@@ -8,13 +8,14 @@
         </div>
     </div>
 </section>
-
 <script>
+    // Get references to HTML elements
     const loading = document.getElementById("loading-div");
     const content = document.getElementById('content');
 
+    // Function to fetch and display projects
     const getProjects = async function() {
-        // Show Loading
+        // Show loading spinner and hide content
         loading.classList.remove('d-none');
         content.classList.add('d-none');
 
@@ -23,21 +24,19 @@
             const response = await axios.get(URL);
             const data = await response.data;
 
-            // Hide Loading
+            // Hide loading spinner and show content
             loading.classList.add('d-none');
             content.classList.remove('d-none');
 
-            // Render Project cards
+            // Render project cards
             renderProjectCards(data);
         } catch (error) {
-            // Show Loading
-            loading.classList.remove('d-none');
-            content.classList.add('d-none');
             alert('Something Went wrong');
             console.error(error);
         }
     }();
 
+    // Function to render project cards
     const renderProjectCards = (projects) => {
         const projectsListDiv = document.getElementById("project-list");
         projects.map(project => {
@@ -49,6 +48,7 @@
                 thumbnailLink
             } = project;
 
+            // Generate HTML for each project card and append it to the projects list
             projectsListDiv.innerHTML += `
             <div id=${id} class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                 <div class="card-body p-0">
@@ -58,10 +58,10 @@
                         <p>${details}</p>
                         <a class ="text-decoration-none" target="_blank" href="${previewLink}">View Project</a>
                     </div>
-                <img class="w-50" src='${thumbnailLink}' alt=${title} />
-             </div>
-        </div>
-    </div>`
-        })
+                    <img class="w-50" src='${thumbnailLink}' alt=${title} />
+                 </div>
+                </div>
+            </div>`;
+        });
     }
 </script>
