@@ -9,7 +9,8 @@ class projectsController extends Controller
 {
     public function getPage(Request $request)
     {
-        return view('pages.projects');
+        $seo = DB::table('seo_properties')->where('pageName', '=', 'projects')->first();
+        return view('pages.projects',['seo' => $seo]);
     }
 
     public function getProjectsData(Request $request)

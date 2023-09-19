@@ -9,7 +9,8 @@ class homeController extends Controller
 {
     public function getPage(Request $request)
     {
-        return view('pages.home');
+        $seo = DB::table('seo_properties')->where('pageName', '=', 'home')->first();
+        return view('pages.home', ['seo' => $seo]);
     }
 
     public function getHeroData(Request $request)
